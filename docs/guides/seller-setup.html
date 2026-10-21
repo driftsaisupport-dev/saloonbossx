@@ -1,0 +1,309 @@
+<title>SaloonBossX Launch Runbook</title>
+<meta name="description" content="Seller's start-to-end setup for SaloonBossX: keys, licence server, cloud, booking website, build, selling and support.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=Noto+Sans:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: a runbook — a sticky phase index on wide screens, numbered phases with copyable commands, done-checks you can tick. */
+:root{
+  --bg:#f6f5f2; --surface:#ffffff; --ink:#1a1722; --muted:#6c6777; --line:#e5e0d6; --code:#f1eee7;
+  --gold:#ad7d22; --gold-soft:#f6ecd7; --brand:#5b3df5; --brand-soft:#ebe6ff; --ok:#15803d; --ok-soft:#e2f4e7; --warn:#b45309; --warn-soft:#fcefdb; --bad:#b91c1c; --bad-soft:#fde4e4;
+  --display:"Sora", "Segoe UI", system-ui, sans-serif; --body:"Noto Sans", system-ui, -apple-system, sans-serif; --mono:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#121017; --surface:#1a1721; --ink:#eceaf2; --muted:#a19bad; --line:#2c2835; --code:#211d2a;
+  --gold:#e0b25a; --gold-soft:#2b2316; --brand:#9a85ff; --brand-soft:#241d40; --ok:#4ade80; --ok-soft:#13271a; --warn:#f0a63c; --warn-soft:#2c2112; --bad:#f87171; --bad-soft:#2d1515; color-scheme:dark } }
+:root[data-theme="dark"]{
+  --bg:#121017; --surface:#1a1721; --ink:#eceaf2; --muted:#a19bad; --line:#2c2835; --code:#211d2a;
+  --gold:#e0b25a; --gold-soft:#2b2316; --brand:#9a85ff; --brand-soft:#241d40; --ok:#4ade80; --ok-soft:#13271a; --warn:#f0a63c; --warn-soft:#2c2112; --bad:#f87171; --bad-soft:#2d1515; color-scheme:dark }
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:28px 64px;display:grid;grid-template-columns:230px minmax(0,1fr);gap:40px}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr)} aside{position:static!important}}
+aside{position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px);align-self:start;font-size:14px}
+aside .lbl{font:700 11px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+aside ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+aside a{display:flex;gap:10px;padding:5px 8px;border-radius:8px;color:var(--ink);text-decoration:none}
+aside a span{color:var(--gold);font:700 12px/1.6 var(--mono);min-width:2ch}
+aside a:hover,aside a:focus-visible{background:var(--surface);outline:none}
+.progress{margin-top:14px;font-size:13px;color:var(--muted)}
+.bar{height:6px;background:var(--line);border-radius:3px;overflow:hidden;margin-top:6px}.bar i{display:block;height:100%;background:var(--ok);width:0;transition:width .2s}
+main{min-width:0}
+header{padding-bottom:22px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px}
+.eyebrow{font:700 12px/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+h1{font:800 clamp(28px,4.6vw,40px)/1.12 var(--display);margin:0;text-wrap:balance}
+h2{font:800 21px/1.3 var(--display);margin:0;text-wrap:balance}
+h3{font:700 15px/1.3 var(--display);margin:6px 0 0}
+p{margin:0}
+.lead{color:var(--muted);max-width:66ch}
+.phase{padding-block:30px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.ph-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.ph-num{font:600 13px/1 var(--mono);color:var(--gold)}
+.time{font-size:12.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+ol.do,ul.do{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:7px;max-width:72ch}
+.cmd{position:relative;background:var(--code);border:1px solid var(--line);border-radius:12px;padding:12px 70px 12px 14px;font:13.5px/1.55 var(--mono);overflow-x:auto;white-space:pre;color:var(--ink)}
+.cmd button{position:absolute;top:8px;right:8px;font:600 12px var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:4px 10px;cursor:pointer}
+.cmd button:focus-visible{outline:2px solid var(--brand)}
+code{font:0.9em var(--mono);background:var(--code);padding:1px 5px;border-radius:5px}
+.ui{font-weight:700;background:var(--brand-soft);color:var(--brand);padding:1px 6px;border-radius:6px}
+.note{border-radius:12px;padding:11px 14px;font-size:14.5px;max-width:76ch}
+.note.tip{background:var(--gold-soft)}.note.warn{background:var(--warn-soft);border-left:3px solid var(--warn)}.note.bad{background:var(--bad-soft);border-left:3px solid var(--bad)}.note.ok{background:var(--ok-soft)}
+.done{display:flex;gap:10px;align-items:flex-start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:14.5px;cursor:pointer;max-width:76ch}
+.done input{width:18px;height:18px;margin-top:3px;accent-color:var(--ok);flex:0 0 auto}
+.done:has(input:checked){border-color:var(--ok);background:var(--ok-soft)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 11.5px/1.2 var(--display);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+td code{white-space:nowrap}
+.flow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.flow div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:13.5px}
+.flow b{display:block;font-family:var(--display);font-size:13px;color:var(--gold)}
+a{color:var(--brand)}
+footer{padding-top:24px;color:var(--muted);font-size:13.5px}
+</style>
+
+<div class="wrap">
+<aside>
+  <div class="lbl">Phases</div>
+  <ol>
+    <li><a href="#p0"><span>00</span>What you need</a></li>
+    <li><a href="#p1"><span>01</span>Project &amp; keys</a></li>
+    <li><a href="#p2"><span>02</span>Licence sheet</a></li>
+    <li><a href="#p3"><span>03</span>Cloud bridge</a></li>
+    <li><a href="#p4"><span>04</span>Booking website</a></li>
+    <li><a href="#p5"><span>05</span>The .env file</a></li>
+    <li><a href="#p6"><span>06</span>Test in Expo Go</a></li>
+    <li><a href="#p7"><span>07</span>Build the APK</a></li>
+    <li><a href="#p8"><span>08</span>Two-phone test</a></li>
+    <li><a href="#p9"><span>09</span>Selling a key</a></li>
+    <li><a href="#p10"><span>10</span>Renewals &amp; support</a></li>
+    <li><a href="#p11"><span>11</span>Fix: key not valid</a></li>
+    <li><a href="#p12"><span>12</span>Other problems</a></li>
+  </ol>
+  <div class="progress"><span id="pct">0 of 0 checks done</span><div class="bar"><i id="barfill"></i></div></div>
+</aside>
+
+<main>
+<header>
+  <span class="eyebrow">Seller runbook · SaloonBossX 5.5.3</span>
+  <h1>From zip file to first sale</h1>
+  <p class="lead">Do phases 01 to 08 once, on a laptop, in order. About 2 hours. After that, each sale takes two minutes and each salon sets itself up with the in-app checklist. Tick the checks as you go; they are remembered in this browser.</p>
+  <div class="flow" aria-label="How the parts connect">
+    <div><b>App (APK)</b>Billing, AI, data on the salon's phone</div>
+    <div><b>Licence sheet</b>Your Google Sheet + Code.gs: keys, devices, renewals</div>
+    <div><b>Cloud bridge</b>BranchSync.gs in a new Gmail: backups, branches, bookings</div>
+    <div><b>Booking website</b>GitHub Pages: short links customers open</div>
+  </div>
+</header>
+
+<section class="phase" id="p0">
+  <div class="ph-head"><span class="ph-num">00</span><h2>What you need</h2><span class="time">10 min</span></div>
+  <ul class="do">
+    <li>A laptop (Windows or Mac) with <b>Node.js 22</b> from nodejs.org, and a code editor such as VS Code.</li>
+    <li>Your personal Gmail (for the licence sheet) and <b>one new Gmail</b> only for the cloud bridge.</li>
+    <li>A free <b>GitHub</b> account (for the booking website) and a free <b>Expo</b> account at expo.dev (for building the APK).</li>
+    <li>An Android phone with <b>Expo Go</b> from the Play Store, and a second phone for testing.</li>
+    <li>The files from this chat: <code>SaloonBossX_v5.5.3.zip</code>, <code>SaloonBossX_Licence_Keys.xlsx</code>, <code>SaloonBossX_PRIVATE_KEY_keep_secret.zip</code>.</li>
+  </ul>
+</section>
+
+<section class="phase" id="p1">
+  <div class="ph-head"><span class="ph-num">01</span><h2>Unzip the project and put the keys in place</h2><span class="time">15 min</span></div>
+  <ol class="do">
+    <li>Unzip <code>SaloonBossX_v5.5.3.zip</code> to a folder, e.g. <code>Documents/SaloonBossX</code>. Use this new folder, not an older copy.</li>
+    <li>Unzip the private key zip and copy <code>keys/private.key</code> into the project's <code>keys</code> folder.</li>
+    <li>Back up <code>private.key</code> in two places now (pen drive + password manager). If you lose it you can never make keys for apps already sold.</li>
+    <li>Open a terminal in the project folder and run:</li>
+  </ol>
+  <div class="cmd">npm install
+npm run preflight<button type="button">Copy</button></div>
+  <p class="note tip">Preflight will stop on missing <code>.env</code> values. That's expected until phase 05. Check that it does <b>not</b> say "private.key does NOT match the public key".</p>
+  <label class="done"><input type="checkbox" id="c1"><span><code>keys/private.key</code> is in the project and backed up twice; <code>npm install</code> finished.</span></label>
+</section>
+
+<section class="phase" id="p2">
+  <div class="ph-head"><span class="ph-num">02</span><h2>Licence sheet and licence server</h2><span class="time">15 min</span></div>
+  <ol class="do">
+    <li>In your personal Google Drive: <b>New → File upload</b> → <code>SaloonBossX_Licence_Keys.xlsx</code>.</li>
+    <li>Open it → <b>File → Save as Google Sheets</b>. Rename the new sheet exactly <code>SaloonBossX Licenses</code>. Delete the uploaded .xlsx so only one file has that name.</li>
+    <li>In the sheet: <b>Extensions → Apps Script</b>. Delete the sample code, paste all of <code>google-apps-script/Code.gs</code>, Save.</li>
+    <li>Gear icon <b>Project Settings → Script properties → Add</b>: name <code>RESPONSE_SECRET</code>, value: a long random text. Make one with the command below and keep a copy for phase 05.</li>
+  </ol>
+  <div class="cmd">node -e "console.log(require('crypto').randomBytes(24).toString('base64url'))"<button type="button">Copy</button></div>
+  <ol class="do" start="5">
+    <li>Choose the function <code>setup</code> in the toolbar → <b>Run</b> → allow access (Advanced → Go to project → Allow).</li>
+    <li><b>Deploy → New deployment</b> → gear → <b>Web app</b>. Execute as: <b>Me</b>. Who has access: <b>Anyone</b>. Deploy. Copy the URL ending in <code>/exec</code>.</li>
+  </ol>
+  <label class="done"><input type="checkbox" id="c2"><span>Sheet named <code>SaloonBossX Licenses</code> with the <b>Keys Master</b> tab; licence <code>/exec</code> URL and RESPONSE_SECRET saved in a note.</span></label>
+</section>
+
+<section class="phase" id="p3">
+  <div class="ph-head"><span class="ph-num">03</span><h2>Cloud bridge (backup, branches, booking)</h2><span class="time">10 min</span></div>
+  <ol class="do">
+    <li>Sign in to your <b>new</b> Gmail (e.g. <code>saloonbossx.cloud@gmail.com</code>). Open <b>script.google.com → New project</b>.</li>
+    <li>Paste all of <code>google-apps-script/BranchSync.gs</code> → Save.</li>
+    <li><b>Deploy → New deployment → Web app</b>. Execute as: <b>Me</b>. Who has access: <b>Anyone</b> (not "Anyone with Google account"). Deploy → Authorise.</li>
+    <li>Copy the <code>/exec</code> URL. Open it in an <b>incognito</b> window: you must see <code>{"ok":true,…"version":5}</code>.</li>
+  </ol>
+  <p class="note bad">"Sorry, unable to open the file at present" in the incognito test means access is not set to <b>Anyone</b>, or you copied the editor or <code>/dev</code> link instead of <code>/exec</code>.</p>
+  <p class="note warn">Updating this script later: <b>Deploy → Manage deployments → ✏️ → Version: New version</b>. Never "New deployment"; that changes the URL and disconnects every salon.</p>
+  <label class="done"><input type="checkbox" id="c3"><span>Cloud <code>/exec</code> URL shows version 5 in incognito.</span></label>
+</section>
+
+<section class="phase" id="p4">
+  <div class="ph-head"><span class="ph-num">04</span><h2>Booking website with short links</h2><span class="time">15 min</span></div>
+  <ol class="do">
+    <li>On GitHub: <b>+ → New repository</b>, named exactly <code>&lt;your-username&gt;.github.io</code>, Public → Create.</li>
+    <li>Put the cloud URL into <code>.env</code> first (phase 05, line <code>EXPO_PUBLIC_CLOUD_URL</code>), then run:</li>
+  </ol>
+  <div class="cmd">npm run booking-site<button type="button">Copy</button></div>
+  <ol class="do" start="3">
+    <li>In the repository: <b>Add file → Upload files</b> → drag the 4 files from <code>booking-site/dist/</code> (<code>index.html</code>, <code>404.html</code>, <code>config.js</code>, <code>.nojekyll</code>) → Commit.</li>
+    <li><b>Settings → Pages</b> → Deploy from a branch → <code>main</code> / root → Save. Wait two minutes.</li>
+    <li>Open <code>https://&lt;username&gt;.github.io/test</code>: "Booking not available" means it works.</li>
+  </ol>
+  <div class="cmd">npm run check-booking<button type="button">Copy</button></div>
+  <p>This checks, from your laptop, that the cloud script is public and on version 5, and that the website is online and points at it. Every line should show ✔.</p>
+  <label class="done"><input type="checkbox" id="c4"><span>The <code>/test</code> page shows "Booking not available" and <code>npm run check-booking</code> says "All good".</span></label>
+</section>
+
+<section class="phase" id="p5">
+  <div class="ph-head"><span class="ph-num">05</span><h2>Fill in the .env file</h2><span class="time">5 min</span></div>
+  <p>Copy <code>.env.example</code> to <code>.env</code> and fill in these lines. Leave <code>EXPO_PUBLIC_LICENSE_PUBKEY</code> empty; the public key is built into the app.</p>
+  <div class="cmd">EXPO_PUBLIC_SUPPORT_WHATSAPP=91XXXXXXXXXX
+EXPO_PUBLIC_SELLER_UPI=yourname@okaxis
+EXPO_PUBLIC_SELLER_NAME=SaloonBossX
+EXPO_PUBLIC_LICENSE_URL=https://script.google.com/macros/s/…licence…/exec
+SBX_RESPONSE_SECRET=the-same-text-as-RESPONSE_SECRET
+EXPO_PUBLIC_CLOUD_URL=https://script.google.com/macros/s/…cloud…/exec
+EXPO_PUBLIC_BOOKING_SITE=https://&lt;username&gt;.github.io
+EXPO_PUBLIC_TRIAL_DAYS=0
+EXPO_PUBLIC_REFUND_DAYS=7<button type="button">Copy</button></div>
+  <div class="cmd">npm run preflight
+npm run eas-env<button type="button">Copy</button></div>
+  <p class="note tip"><code>npm run eas-env</code> copies these values into <code>eas.json</code>. Cloud builds never receive <code>.env</code>, so without this the APK you sell would have no WhatsApp number or cloud links. Run it again whenever you change <code>.env</code>.</p>
+  <label class="done"><input type="checkbox" id="c5"><span><code>npm run preflight</code> says <b>Preflight passed</b>, and <code>npm run eas-env</code> ran.</span></label>
+</section>
+
+<section class="phase" id="p6">
+  <div class="ph-head"><span class="ph-num">06</span><h2>Test in Expo Go</h2><span class="time">15 min</span></div>
+  <div class="cmd">npx expo start -c<button type="button">Copy</button></div>
+  <ol class="do">
+    <li>Scan the QR with Expo Go. <code>-c</code> clears the cache; without it Expo Go can keep running old code and old settings.</li>
+    <li>Finish first setup, then paste a <b>Monthly</b> key from your sheet → Activate. It should say "Valid until …".</li>
+    <li>At the bottom of the activation screen, <b>App key check</b> must show <code>I1CXwh</code>. That ID belongs to the public key your 1,600 keys were signed with.</li>
+    <li>Check the sheet: that row now has a Device ID, Status ACTIVE, and a real end date in Expiry.</li>
+  </ol>
+  <label class="done"><input type="checkbox" id="c6"><span>A key from the sheet activates in Expo Go and the sheet row updates.</span></label>
+</section>
+
+<section class="phase" id="p7">
+  <div class="ph-head"><span class="ph-num">07</span><h2>Build the APK you sell</h2><span class="time">25 min (mostly waiting)</span></div>
+  <div class="cmd">npm install -g eas-cli
+eas login
+eas build -p android --profile production-apk<button type="button">Copy</button></div>
+  <ol class="do">
+    <li>The first time, EAS asks to create a keystore: answer <b>Yes</b>. Expo stores it; keep the same Expo account forever, or later updates won't install over the old app.</li>
+    <li>When the build finishes, download the <code>.apk</code> from the link.</li>
+    <li>Upload it to Google Drive (Anyone with the link → Viewer) or a GitHub Release, and use that link for customers.</li>
+    <li>Every new version: raise <code>versionCode</code> in <code>app.json</code>, run <code>npm run eas-env</code>, then build again.</li>
+  </ol>
+  <label class="done"><input type="checkbox" id="c7"><span>APK built and the download link opens on a phone.</span></label>
+</section>
+
+<section class="phase" id="p8">
+  <div class="ph-head"><span class="ph-num">08</span><h2>Two-phone test before the first sale</h2><span class="time">15 min</span></div>
+  <label class="done"><input type="checkbox" id="c8a"><span>Phone A: install the APK, finish setup with cloud backup on; the checklist ticks cloud within a minute.</span></label>
+  <label class="done"><input type="checkbox" id="c8b"><span>Online Booking → Start → <b>Test</b> says Working ✅ and the link looks like <code>…github.io/salon-name</code>.</span></label>
+  <label class="done"><input type="checkbox" id="c8c"><span>Phone B on mobile data opens the link, books; phone A gets a notification; Accept opens a WhatsApp confirmation.</span></label>
+  <label class="done"><input type="checkbox" id="c8d"><span>A bill sent on WhatsApp ends with the Google review link (after pasting one in Settings → Google reviews).</span></label>
+  <label class="done"><input type="checkbox" id="c8e"><span>Save recovery key → phone B: Join / new phone → restore works.</span></label>
+</section>
+
+<section class="phase" id="p9">
+  <div class="ph-head"><span class="ph-num">09</span><h2>Selling a key (2 minutes)</h2></div>
+  <ol class="do">
+    <li>Take payment by UPI or cash.</li>
+    <li>In <b>Keys Master</b>, filter Plan (solo / standard / multi / academy) and Billing (Monthly / Lifetime). Take the first row with an empty Customer Name.</li>
+    <li>Fill in Customer Name, Phone, Sale Date and Amount Paid. Add a line in <b>Sales Log</b>.</li>
+    <li>WhatsApp the customer the APK link, the key, and the salon setup guide. Tell them: "Long-press → Copy, then tap Paste key in the app."</li>
+  </ol>
+  <div class="tbl"><table>
+    <tr><th>Plan</th><th>Monthly</th><th>One-time</th><th>Devices</th></tr>
+    <tr><td>Solo</td><td>₹199</td><td>₹1,999</td><td>1</td></tr>
+    <tr><td>Salon Pro</td><td>₹599</td><td>₹5,999</td><td>1</td></tr>
+    <tr><td>Chain</td><td>₹1,299</td><td>₹12,999</td><td>3</td></tr>
+    <tr><td>Salon + Academy</td><td>₹899</td><td>₹9,999</td><td>2</td></tr>
+  </table></div>
+</section>
+
+<section class="phase" id="p10">
+  <div class="ph-head"><span class="ph-num">10</span><h2>Renewals and daily support</h2></div>
+  <div class="tbl"><table>
+    <tr><th>Situation</th><th>What you do</th></tr>
+    <tr><td>Monthly customer pays again</td><td>Send the next Monthly key of the same plan. The app adds 31 days after their current end date. Or change that row's Expiry to the new date and ask them to tap "I have already paid — check again".</td></tr>
+    <tr><td>Customer changed phone</td><td>Clear Device IDs, set Devices Used to 0 and Status to AVAILABLE in that row. They activate again, then restore with their recovery key.</td></tr>
+    <tr><td>Refund or misuse</td><td>Set Status to REVOKED. The app locks at its next daily check.</td></tr>
+    <tr><td>More keys</td><td><code>npm run batch -- --plan standard --billing monthly --count 200</code>, then File → Import → Append in the sheet.</td></tr>
+    <tr><td>Error report from a salon</td><td>They send it from the app on WhatsApp; it lists the screen and error. Fix, raise versionCode, rebuild, send the new APK link.</td></tr>
+  </table></div>
+</section>
+
+<section class="phase" id="p11">
+  <div class="ph-head"><span class="ph-num">11</span><h2>Fix: "That licence key is not valid"</h2></div>
+  <p>Your key <code>SBX-eyJwIjoic3RhbmRhcmQi…</code> is genuine: it is a Salon Pro Monthly key, order SPM-20261002-0001, and it verifies with your public key <code>I1CXwh…</code>. When the app rejected it, the app was checking with a different public key. The usual causes, all fixed in 5.5.3:</p>
+  <ul class="do">
+    <li>An older project folder, or an old <code>EXPO_PUBLIC_LICENSE_PUBKEY</code> in <code>.env</code>, overrode the new key. 5.5.3 builds your public key into the code and trusts it no matter what <code>.env</code> says.</li>
+    <li>Expo Go was running cached code. Start it with <code>npx expo start -c</code>.</li>
+    <li>The key was typed, or WhatsApp added invisible characters or line breaks. 5.5.3 adds a <b>Paste key</b> button and cleans up pasted text.</li>
+  </ul>
+  <p class="note ok">To check quickly: the activation screen shows <b>App key check: I1CXwh</b>. If it shows anything else, you are running an old build or folder.</p>
+</section>
+
+<section class="phase" id="p12">
+  <div class="ph-head"><span class="ph-num">12</span><h2>Other problems</h2></div>
+  <div class="tbl"><table>
+    <tr><th>Symptom</th><th>Cause</th><th>Fix</th></tr>
+    <tr><td>App says booking works, but the link fails in a browser ("unable to open the file")</td><td>The app is sharing the long <code>script.google.com</code> link. Google blocks that page in browsers signed in to Google. Customers must get the short website link.</td><td>1) Cloud script on version 5 (<b>New version</b> deploy). 2) Booking website online (phase 04). 3) <code>EXPO_PUBLIC_BOOKING_SITE</code> in <code>.env</code>, then <code>npm run eas-env</code> and rebuild. 4) Run <code>npm run check-booking</code>. 5) In the app: Online Booking → Save &amp; publish → <b>Test</b> must show ✅ and a link like <code>you.github.io/glow-beauty-vashi</code>.</td></tr>
+    <tr><td>APK has no WhatsApp button or cloud</td><td>EAS build didn't get <code>.env</code></td><td><code>npm run eas-env</code>, rebuild</td></tr>
+    <tr><td>Sheet not updating</td><td>Sheet name differs, two files with the same name, or wrong RESPONSE_SECRET</td><td>Exactly one file named <code>SaloonBossX Licenses</code>; same secret in Script properties and <code>.env</code></td></tr>
+    <tr><td>"Update your script" in the app</td><td>Old cloud script</td><td>Paste the new BranchSync.gs → Manage deployments → New version</td></tr>
+    <tr><td>Update won't install over the old app</td><td>Different signing keystore or a lower versionCode</td><td>Same Expo account; raise versionCode</td></tr>
+  </table></div>
+</section>
+
+<footer>SaloonBossX 5.5.3 · Keep this page with your <code>private.key</code> backup notes.</footer>
+</main>
+</div>
+
+<script>
+(function () {
+  document.querySelectorAll('.cmd button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.parentElement.textContent.replace(/Copy$|Copied$/, '').trim();
+      var done = function () { b.textContent = 'Copied'; setTimeout(function () { b.textContent = 'Copy'; }, 1500); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(done, function () { select(b.parentElement); });
+      } else select(b.parentElement);
+    });
+  });
+  function select(el) { var r = document.createRange(); r.selectNodeContents(el); var s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  var boxes = [].slice.call(document.querySelectorAll('.done input'));
+  var saved = {};
+  try { saved = JSON.parse(localStorage.getItem('sbx-runbook') || '{}'); } catch (e) {}
+  function update() {
+    var n = boxes.filter(function (b) { return b.checked; }).length;
+    document.getElementById('pct').textContent = n + ' of ' + boxes.length + ' checks done';
+    document.getElementById('barfill').style.width = (boxes.length ? (n / boxes.length * 100) : 0) + '%';
+  }
+  boxes.forEach(function (b) {
+    b.checked = !!saved[b.id];
+    b.addEventListener('change', function () {
+      saved[b.id] = b.checked;
+      try { localStorage.setItem('sbx-runbook', JSON.stringify(saved)); } catch (e) {}
+      update();
+    });
+  });
+  update();
+})();
+</script>

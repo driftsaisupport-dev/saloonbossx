@@ -1,0 +1,181 @@
+{
+  "expo": {
+    "name": "SaloonBossX",
+    "slug": "saloonbossx",
+    "version": "6.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A0807"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.salonboss.app",
+      "infoPlist": {
+        "LSApplicationQueriesSchemes": [
+          "whatsapp",
+          "upi",
+          "phonepe",
+          "gpay",
+          "paytmmp"
+        ],
+        "NSCameraUsageDescription": "SaloonBossX needs camera access to take your salon profile photo.",
+        "NSPhotoLibraryUsageDescription": "SaloonBossX needs photo library access to set your salon profile picture.",
+        "NSPhotoLibraryAddUsageDescription": "SaloonBossX needs permission to save photos.",
+        "NSContactsUsageDescription": "SaloonBossX reads contacts only when you choose to import your customers."
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#0A0807"
+      },
+      "package": "com.salonboss.app",
+      "permissions": [
+        "CAMERA",
+        "INTERNET",
+        "READ_MEDIA_IMAGES",
+        "RECEIVE_BOOT_COMPLETED",
+        "SCHEDULE_EXACT_ALARM",
+        "VIBRATE",
+        "android.permission.POST_NOTIFICATIONS",
+        "android.permission.REQUEST_INSTALL_PACKAGES",
+        "READ_CONTACTS"
+      ],
+      "blockedPermissions": [
+        "android.permission.SYSTEM_ALERT_WINDOW",
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_MEDIA_AUDIO",
+        "android.permission.READ_MEDIA_VIDEO",
+        "android.permission.WRITE_EXTERNAL_STORAGE",
+        "android.permission.READ_EXTERNAL_STORAGE"
+      ],
+      "softwareKeyboardLayoutMode": "resize",
+      "allowBackup": true,
+      "versionCode": 17
+    },
+    "plugins": [
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "enableProguardInReleaseBuilds": true,
+            "enableShrinkResourcesInReleaseBuilds": true,
+            "usesCleartextTraffic": false,
+            "manifestQueries": {
+              "package": [
+                "com.whatsapp",
+                "com.whatsapp.w4b",
+                "net.one97.paytm",
+                "com.phonepe.app",
+                "com.google.android.apps.nbu.paisa.user"
+              ],
+              "intent": [
+                {
+                  "action": "DIAL",
+                  "data": {
+                    "scheme": "tel"
+                  }
+                },
+                {
+                  "action": "SENDTO",
+                  "data": {
+                    "scheme": "mailto"
+                  }
+                },
+                {
+                  "action": "VIEW",
+                  "data": {
+                    "scheme": "upi"
+                  }
+                },
+                {
+                  "action": "VIEW",
+                  "data": {
+                    "scheme": "whatsapp"
+                  }
+                }
+              ]
+            },
+            "enableMinifyInReleaseBuilds": true
+          }
+        }
+      ],
+      [
+        "expo-sqlite",
+        {
+          "android": {
+            "useSQLCipher": true
+          },
+          "ios": {
+            "useSQLCipher": true
+          }
+        }
+      ],
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "SaloonBossX needs access to your photos to set a salon profile picture.",
+          "cameraPermission": "SaloonBossX needs camera access to take a profile photo."
+        }
+      ],
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/notification-icon.png",
+          "color": "#E08A3C",
+          "sounds": [],
+          "mode": "production"
+        }
+      ],
+      "expo-font",
+      "expo-sharing",
+      "expo-status-bar",
+      "expo-document-picker",
+      "expo-mail-composer",
+      "expo-updates",
+      "./plugins/withAndroidBackupRules",
+      [
+        "expo-contacts",
+        {
+          "contactsPermission": "SaloonBossX reads contacts only when you choose to import your customers."
+        }
+      ]
+    ],
+    "updates": {
+      "enabled": false,
+      "checkAutomatically": "ON_LOAD",
+      "fallbackToCacheTimeout": 0
+    },
+    "runtimeVersion": "4.0.0",
+    "extra": {
+      "licensePubKey": "4xSAtujWzeU5jl2UuQ4B2dXdlQYtQ37kkq6u6oBQEqc",
+      "licenseUrl": "https://script.google.com/macros/s/AKfycbxks1VZaK3qLBdAaetE0RVzl0hOK5lOOflqvg0u7qtJHfVGcAXTW4jgZBlNeq00PtE3CA/exec",
+      "responseSecret": "SBX_MyApp_2026_SecretKey_XYZ789",
+      "updateRepo": "SatyamRasal/SaloonBossX",
+      "legacySecret": "",
+      "buyUrl": "",
+      "supportWhatsapp": "918446525109",
+      "supportEmail": "satyam1999rasal@gmail.com",
+      "trialDays": "0",
+      "sellerUpi": "",
+      "sellerName": "",
+      "refundDays": "7",
+      "eas": {
+        "projectId": "fc407355-4ea2-41ba-b3d0-a6bb064a792f"
+      }
+    },
+    "owner": "satyamrasal123",
+    "scheme": "saloonbossx"
+  }
+}

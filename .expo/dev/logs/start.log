@@ -1,0 +1,110 @@
+{"_e":"root:init","_t":1792563835818,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1792563835818,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1792563835819,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1792563836015,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1792563836152,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1792563836233,"plugins":[{"packageName":"expo-sqlite","bannerTitle":"expo-sqlite","cliBanner":false,"webpageEndpoint":"/_expo/plugins/expo-sqlite"}]}
+{"_e":"metro:instantiate","_t":1792563836594,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1792563843198,"id":"1","platform":"ios","environment":null,"entry":"node_modules/expo/AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1792563843199,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1792563843200,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1792563843379,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1792563843483,"id":"1","progress":0.09,"total":40,"current":12}
+{"_e":"metro:bundling:progress","_t":1792563843583,"id":"1","progress":0.4096,"total":50,"current":32}
+{"_e":"metro:bundling:progress","_t":1792563843685,"id":"1","progress":0.4096,"total":176,"current":68}
+{"_e":"metro:bundling:progress","_t":1792563843785,"id":"1","progress":0.4096,"total":258,"current":118}
+{"_e":"metro:bundling:progress","_t":1792563843887,"id":"1","progress":0.4096,"total":383,"current":192}
+{"_e":"metro:bundling:progress","_t":1792563843987,"id":"1","progress":0.4096,"total":479,"current":226}
+{"_e":"metro:bundling:progress","_t":1792563844087,"id":"1","progress":0.4096,"total":584,"current":313}
+{"_e":"metro:bundling:progress","_t":1792563844189,"id":"1","progress":0.4096,"total":609,"current":360}
+{"_e":"metro:bundling:progress","_t":1792563844290,"id":"1","progress":0.4096,"total":753,"current":436}
+{"_e":"metro:bundling:progress","_t":1792563844394,"id":"1","progress":0.4096,"total":818,"current":501}
+{"_e":"metro:bundling:progress","_t":1792563844494,"id":"1","progress":0.4665030183493276,"total":877,"current":599}
+{"_e":"metro:bundling:progress","_t":1792563844595,"id":"1","progress":0.514090514256659,"total":947,"current":679}
+{"_e":"metro:bundling:progress","_t":1792563844695,"id":"1","progress":0.514090514256659,"total":993,"current":710}
+{"_e":"metro:bundling:progress","_t":1792563844797,"id":"1","progress":0.5196066834392138,"total":1003,"current":723}
+{"_e":"metro:bundling:progress","_t":1792563844897,"id":"1","progress":0.5353602587981571,"total":1010,"current":739}
+{"_e":"metro:bundling:progress","_t":1792563844998,"id":"1","progress":0.5446252658002694,"total":1103,"current":814}
+{"_e":"metro:bundling:progress","_t":1792563845099,"id":"1","progress":0.5686219655199507,"total":1167,"current":880}
+{"_e":"metro:bundling:progress","_t":1792563845199,"id":"1","progress":0.6284397762747138,"total":1240,"current":983}
+{"_e":"metro:bundling:progress","_t":1792563845299,"id":"1","progress":0.6598359024370826,"total":1268,"current":1030}
+{"_e":"metro:bundling:progress","_t":1792563845399,"id":"1","progress":0.747448576138945,"total":1292,"current":1117}
+{"_e":"metro:bundling:progress","_t":1792563845499,"id":"1","progress":0.7773187213332866,"total":1352,"current":1192}
+{"_e":"metro:bundling:progress","_t":1792563845599,"id":"1","progress":0.7773187213332866,"total":1436,"current":1266}
+{"_e":"metro:bundling:progress","_t":1792563845699,"id":"1","progress":0.7773187213332866,"total":1519,"current":1335}
+{"_e":"metro:bundling:progress","_t":1792563845800,"id":"1","progress":0.7912656661918805,"total":1557,"current":1385}
+{"_e":"metro:bundling:progress","_t":1792563845900,"id":"1","progress":0.7912656661918805,"total":1665,"current":1460}
+{"_e":"metro:bundling:progress","_t":1792563846001,"id":"1","progress":0.7912656661918805,"total":1721,"current":1508}
+{"_e":"metro:bundling:progress","_t":1792563846113,"id":"1","progress":0.8073340102895613,"total":1754,"current":1576}
+{"_e":"metro:bundling:progress","_t":1792563846213,"id":"1","progress":0.885133216177045,"total":1791,"current":1685}
+{"_e":"metro:bundling:progress","_t":1792563846313,"id":"1","progress":0.886538977217715,"total":1831,"current":1724}
+{"_e":"metro:bundling:progress","_t":1792563846413,"id":"1","progress":0.9104470415540513,"total":1833,"current":1749}
+{"_e":"metro:bundling:progress","_t":1792563846513,"id":"1","progress":0.9546114182232182,"total":1873,"current":1830}
+{"_e":"metro:bundling:progress","_t":1792563846613,"id":"1","progress":0.9640389242976066,"total":1984,"current":1948}
+{"_e":"metro:bundling:progress","_t":1792563846713,"id":"1","progress":0.999,"total":1992,"current":1992}
+{"_e":"metro:bundling:done","_t":1792563846770,"id":"1","total":1992,"ms":3571.465875}
+{"_e":"metro:client_log","_t":1792563851425,"level":"warn","data":["expo-notifications: Android Push notifications (remote notifications) functionality provided by expo-notifications was removed from Expo Go with the release of SDK 53. Use a development build instead of Expo Go. Learn more at https://docs.expo.dev/develop/development-builds/introduction/."]}
+{"_e":"metro:client_log","_t":1792563851425,"level":"warn","data":["`expo-notifications` functionality is not fully supported in Expo Go:\nWe recommend you instead use a development build to avoid limitations. Learn more: https://expo.fyi/dev-client."]}
+{"_e":"metro:client_log","_t":1792563851567,"level":"warn","data":["[db] schema at version 13 of 10"]}
+{"_e":"metro:client_log","_t":1792563851748,"level":"warn","data":["[backup] tables missing from BACKUP_TABLES:","resources, consent_templates, client_consents, service_products, suppliers, purchases, supplier_payments, stock_counts, staff_targets, checklist_templates, checklist_runs, gift_vouchers, followup_log"]}
+{"_e":"metro:client_log","_t":1792563865018,"level":"warn","data":["[backup] tables missing from BACKUP_TABLES:","resources, consent_templates, client_consents, service_products, suppliers, purchases, supplier_payments, stock_counts, staff_targets, checklist_templates, checklist_runs, gift_vouchers, followup_log"]}
+{"_e":"root:init","_t":1792567894031,"format":"v0-jsonl","version":"57.0.25"}
+{"_e":"env:mode","_t":1792567894032,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1792567894033,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1792567894247,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../../../app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1792567894398,"serverRoot":"../../..","projectRoot":"../../..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"expo:dev-tools-plugin:load","_t":1792567894491,"plugins":[{"packageName":"expo-sqlite","bannerTitle":"expo-sqlite","cliBanner":false,"webpageEndpoint":"/_expo/plugins/expo-sqlite"}]}
+{"_e":"metro:instantiate","_t":1792567894937,"atlas":false,"workers":7,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1792567905296,"id":"1","platform":"ios","environment":null,"entry":"node_modules/expo/AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1792567905296,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1792567905299,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1792567905532,"id":"1","progress":0.010000000000000002,"total":1,"current":1}
+{"_e":"metro:bundling:progress","_t":1792567905635,"id":"1","progress":0.014692378328741967,"total":33,"current":4}
+{"_e":"metro:bundling:progress","_t":1792567905721,"id":"1","progress":0.022956841138659322,"total":33,"current":5}
+{"_e":"metro:bundling:progress","_t":1792567905821,"id":"1","progress":0.029259002770083104,"total":76,"current":13}
+{"_e":"metro:bundling:progress","_t":1792567905922,"id":"1","progress":0.029259002770083104,"total":260,"current":29}
+{"_e":"metro:bundling:progress","_t":1792567906022,"id":"1","progress":0.042044402869965865,"total":317,"current":65}
+{"_e":"metro:bundling:progress","_t":1792567906126,"id":"1","progress":0.09785667324128862,"total":390,"current":122}
+{"_e":"metro:bundling:progress","_t":1792567906227,"id":"1","progress":0.13444444444444442,"total":450,"current":165}
+{"_e":"metro:bundling:progress","_t":1792567906327,"id":"1","progress":0.1902444545043006,"total":564,"current":246}
+{"_e":"metro:bundling:progress","_t":1792567906428,"id":"1","progress":0.23459420435392686,"total":607,"current":294}
+{"_e":"metro:bundling:progress","_t":1792567906528,"id":"1","progress":0.24410050277804685,"total":674,"current":333}
+{"_e":"metro:bundling:progress","_t":1792567906628,"id":"1","progress":0.2507304598007352,"total":685,"current":343}
+{"_e":"metro:bundling:progress","_t":1792567906728,"id":"1","progress":0.2609396375630142,"total":693,"current":354}
+{"_e":"metro:bundling:progress","_t":1792567906830,"id":"1","progress":0.3056888961389032,"total":709,"current":392}
+{"_e":"metro:bundling:progress","_t":1792567906930,"id":"1","progress":0.3549415148556823,"total":851,"current":507}
+{"_e":"metro:bundling:progress","_t":1792567907030,"id":"1","progress":0.3681353364474183,"total":979,"current":594}
+{"_e":"metro:bundling:progress","_t":1792567907130,"id":"1","progress":0.41686941085139784,"total":1047,"current":676}
+{"_e":"metro:bundling:progress","_t":1792567907230,"id":"1","progress":0.461350596074827,"total":1088,"current":739}
+{"_e":"metro:bundling:progress","_t":1792567907330,"id":"1","progress":0.5826236419194206,"total":1128,"current":861}
+{"_e":"metro:bundling:progress","_t":1792567907430,"id":"1","progress":0.7189046568592663,"total":1157,"current":981}
+{"_e":"metro:bundling:progress","_t":1792567907530,"id":"1","progress":0.7189046568592663,"total":1282,"current":1080}
+{"_e":"metro:bundling:progress","_t":1792567907630,"id":"1","progress":0.7189046568592663,"total":1386,"current":1172}
+{"_e":"metro:bundling:progress","_t":1792567907730,"id":"1","progress":0.7442099781789326,"total":1420,"current":1225}
+{"_e":"metro:bundling:progress","_t":1792567907830,"id":"1","progress":0.7442099781789326,"total":1551,"current":1303}
+{"_e":"metro:bundling:progress","_t":1792567907930,"id":"1","progress":0.7442099781789326,"total":1646,"current":1370}
+{"_e":"metro:bundling:progress","_t":1792567908031,"id":"1","progress":0.7442099781789326,"total":1692,"current":1435}
+{"_e":"metro:bundling:progress","_t":1792567908155,"id":"1","progress":0.814524689975937,"total":1713,"current":1546}
+{"_e":"metro:bundling:progress","_t":1792567908255,"id":"1","progress":0.844777249134948,"total":1768,"current":1625}
+{"_e":"metro:bundling:progress","_t":1792567908355,"id":"1","progress":0.8460336679653848,"total":1808,"current":1663}
+{"_e":"metro:bundling:progress","_t":1792567908455,"id":"1","progress":0.866614006232687,"total":1824,"current":1698}
+{"_e":"metro:bundling:progress","_t":1792567908555,"id":"1","progress":0.9267576556810413,"total":1849,"current":1780}
+{"_e":"metro:bundling:progress","_t":1792567908656,"id":"1","progress":0.963015111111111,"total":1875,"current":1840}
+{"_e":"metro:bundling:progress","_t":1792567908757,"id":"1","progress":0.9848982788199797,"total":1979,"current":1964}
+{"_e":"metro:bundling:progress","_t":1792567908862,"id":"1","progress":0.999,"total":1992,"current":1992}
+{"_e":"metro:bundling:done","_t":1792567908979,"id":"1","total":1992,"ms":3683.183042}
+{"_e":"metro:client_log","_t":1792567913838,"level":"warn","data":["expo-notifications: Android Push notifications (remote notifications) functionality provided by expo-notifications was removed from Expo Go with the release of SDK 53. Use a development build instead of Expo Go. Learn more at https://docs.expo.dev/develop/development-builds/introduction/."]}
+{"_e":"metro:client_log","_t":1792567913839,"level":"warn","data":["`expo-notifications` functionality is not fully supported in Expo Go:\nWe recommend you instead use a development build to avoid limitations. Learn more: https://expo.fyi/dev-client."]}
+{"_e":"metro:client_log","_t":1792567913956,"level":"warn","data":["[db] schema at version 13 of 10"]}
+{"_e":"metro:bundling:started","_t":1792567974216,"id":"5","platform":"ios","environment":null,"entry":"node_modules/expo/AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1792567974216,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1792567974288,"id":"5","total":1,"ms":72.092709}
+{"_e":"metro:client_log","_t":1792567977968,"level":"warn","data":["expo-notifications: Android Push notifications (remote notifications) functionality provided by expo-notifications was removed from Expo Go with the release of SDK 53. Use a development build instead of Expo Go. Learn more at https://docs.expo.dev/develop/development-builds/introduction/."]}
+{"_e":"metro:client_log","_t":1792567977968,"level":"warn","data":["`expo-notifications` functionality is not fully supported in Expo Go:\nWe recommend you instead use a development build to avoid limitations. Learn more: https://expo.fyi/dev-client."]}
+{"_e":"metro:client_log","_t":1792567978122,"level":"warn","data":["[db] schema at version 13 of 10"]}
+{"_e":"metro:bundling:started","_t":1792568044599,"id":"9","platform":"ios","environment":null,"entry":"node_modules/expo/AppEntry.js"}
+{"_e":"metro:bundling:progress","_t":1792568044599,"id":"9","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1792568044670,"id":"9","total":1,"ms":70.674416}
+{"_e":"metro:client_log","_t":1792568049076,"level":"warn","data":["expo-notifications: Android Push notifications (remote notifications) functionality provided by expo-notifications was removed from Expo Go with the release of SDK 53. Use a development build instead of Expo Go. Learn more at https://docs.expo.dev/develop/development-builds/introduction/."]}
+{"_e":"metro:client_log","_t":1792568049076,"level":"warn","data":["`expo-notifications` functionality is not fully supported in Expo Go:\nWe recommend you instead use a development build to avoid limitations. Learn more: https://expo.fyi/dev-client."]}
+{"_e":"metro:client_log","_t":1792568049208,"level":"warn","data":["[db] schema at version 13 of 10"]}

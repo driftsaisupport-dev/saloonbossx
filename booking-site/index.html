@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0b0b">
+<title>Book your appointment</title>
+<meta name="description" content="Pick a service and a free time. The salon confirms on WhatsApp.">
+<meta property="og:title" content="Book your appointment online">
+<meta property="og:description" content="Pick a service and a free time — confirmed on WhatsApp.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0b0b'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='%23d9a441' font-family='Arial' font-weight='700'%3E✂%3C/text%3E%3C/svg%3E">
+<style>
+  :root{--ink:#0b0b0b;--gold:#e08a3c;--bg:#f6f4ef;--card:#fff;--text:#17151f;--muted:#857f90;--line:#ebe7df;--brand:#a84f18;--ok:#16a34a;--err:#dc2626}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;background:var(--bg);color:var(--text);font:15px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans",sans-serif}
+  a{color:inherit}
+  .hero{background:radial-gradient(120% 140% at 100% 0%,#2a2214 0%,var(--ink) 55%);color:#fff;padding:26px 18px 22px}
+  .hero .in{max-width:560px;margin:0 auto}
+  .tag{display:inline-block;font-size:11px;letter-spacing:1.6px;text-transform:uppercase;color:var(--gold);font-weight:800;margin-bottom:8px}
+  .hero h1{margin:0;font-size:26px;line-height:1.15;letter-spacing:-.3px}
+  .hero .addr{margin:6px 0 0;color:#cfc8b8;font-size:13.5px}
+  .acts{display:flex;gap:8px;margin-top:16px;overflow-x:auto;padding-bottom:2px}
+  .act{flex:0 0 auto;display:flex;align-items:center;gap:6px;background:#ffffff14;border:1px solid #ffffff22;color:#fff;text-decoration:none;font-weight:700;font-size:13px;padding:9px 12px;border-radius:999px}
+  .act.rv{background:var(--gold);color:#111;border-color:var(--gold)}
+  .wrap{max-width:560px;margin:0 auto;padding:14px 14px 120px}
+  .card{background:var(--card);border-radius:18px;padding:16px;margin-bottom:12px;box-shadow:0 1px 0 var(--line),0 6px 18px rgba(30,20,10,.05)}
+  .h{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+  .n{width:24px;height:24px;border-radius:12px;background:var(--ink);color:var(--gold);display:grid;place-items:center;font-size:12px;font-weight:800;flex:0 0 auto}
+  .h b{font-size:15px}
+  .tabs{display:flex;gap:6px;overflow-x:auto;margin-bottom:8px;padding-bottom:2px}
+  .tab{flex:0 0 auto;border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:6px 12px;font-weight:700;font-size:12.5px;cursor:pointer}
+  .tab.on{background:var(--ink);border-color:var(--ink);color:#fff}
+  .search{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;font-size:15px;margin-bottom:6px;background:#fff}
+  .svc{display:flex;align-items:center;gap:12px;padding:12px 2px;border-bottom:1px solid #f2efe9;cursor:pointer}
+  .svc:last-child{border-bottom:0}
+  .ck{width:22px;height:22px;border-radius:7px;border:2px solid #cfc9bd;display:grid;place-items:center;flex:0 0 auto;color:#fff;font-size:14px}
+  .svc.on .ck{background:var(--brand);border-color:var(--brand)}
+  .svc .nm{flex:1;font-weight:650}
+  .svc .du{display:block;color:var(--muted);font-size:12px;font-weight:500}
+  .svc .pr{font-weight:800;white-space:nowrap}
+  .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+  .chip{flex:0 0 auto;border:1.5px solid var(--line);border-radius:14px;padding:8px 10px;text-align:center;background:#fff;cursor:pointer;min-width:60px}
+  .chip small{display:block;font-size:11px;color:var(--muted)}
+  .chip b{font-size:17px}
+  .chip.on{background:var(--brand);border-color:var(--brand);color:#fff}.chip.on small{color:#ffffffcc}
+  .chip.off{opacity:.35;pointer-events:none}
+  .pill{flex:0 0 auto;border:1.5px solid var(--line);border-radius:999px;padding:8px 14px;background:#fff;font-weight:700;cursor:pointer}
+  .pill.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .grp{font-size:11.5px;font-weight:800;color:var(--muted);text-transform:uppercase;letter-spacing:.8px;margin:12px 0 6px}
+  .slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+  .slot{border:1.5px solid var(--line);border-radius:12px;padding:10px 0;text-align:center;font-weight:750;background:#fff;cursor:pointer}
+  .slot.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  input.f,textarea.f{width:100%;padding:13px 12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;margin-bottom:10px;background:#fff;font-family:inherit}
+  input.f:focus,textarea.f:focus,.search:focus{outline:none;border-color:var(--brand)}
+  .muted{color:var(--muted);font-size:13px}
+  .err{background:#fef2f2;color:var(--err);font-weight:700;border-radius:12px;padding:10px 12px;margin:4px 0 10px}
+  .bar{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 14px calc(12px + env(safe-area-inset-bottom))}
+  .bar .in{max-width:560px;margin:0 auto;display:flex;align-items:center;gap:12px}
+  .bar .sum{flex:1;min-width:0}
+  .bar .sum b{display:block;font-size:17px}
+  .bar .sum span{color:var(--muted);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+  .btn{border:0;border-radius:14px;background:var(--ink);color:#fff;font-size:16px;font-weight:800;padding:14px 20px;cursor:pointer}
+  .btn.gold{background:var(--gold);color:#111}
+  .btn:disabled{opacity:.45}
+  .big{width:100%;display:block;text-align:center;text-decoration:none;margin-top:10px}
+  .ok{text-align:center;padding:26px 8px}
+  .ok .tick{width:72px;height:72px;border-radius:36px;background:#dcfce7;color:var(--ok);display:grid;place-items:center;font-size:38px;margin:0 auto 10px}
+  .ok h2{margin:6px 0}
+  .wa{background:#25d366;color:#fff}
+  .ghost{background:#fff;color:var(--text);border:1.5px solid var(--line)}
+  .skel{height:16px;border-radius:8px;background:linear-gradient(90deg,#eee 0,#f6f6f6 40%,#eee 80%);background-size:200% 100%;animation:sh 1.2s infinite;margin:10px 0}
+  @keyframes sh{to{background-position:-200% 0}}
+  .foot{text-align:center;color:#b3ad9f;font-size:11.5px;padding:8px 0 20px}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px}
+  .note{background:#fffbeb;border:1px solid #fde68a;border-radius:12px;padding:10px 12px;font-size:13px;margin-bottom:12px}
+</style>
+<script src="config.js"></script>
+</head>
+<body>
+<div id="app"></div>
+<script>
+(function () {
+  "use strict";
+  var qs = new URLSearchParams(location.search);
+  var API = window.SBX_API || "";   // never from the URL: a link must not redirect bookings elsewhere
+  // Short link: the last part of the path (site.com/glow-beauty-vashi), or ?s=, or #slug.
+  var seg = location.pathname.split("/").filter(function (x) { return x && !/\.html?$/i.test(x); });
+  var last = seg[seg.length - 1] || "";
+  try { last = decodeURIComponent(last); } catch (e) { last = ""; }
+  var SLUG = (qs.get("s") || qs.get("book") || last || location.hash.replace(/^#/, "")).replace(/[^A-Za-z0-9-]/g, "").slice(0, 90);
+  var P = null, T = [], KEY = "";
+  var S = { svc: {}, date: "", time: "", staff: 0, cat: "", q: "", name: "", phone: "", note: "", step: "pick", err: "", sending: false, ref: "" };
+  var app = document.getElementById("app");
+
+  function esc(x) { return String(x == null ? "" : x).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); }
+  function pad(n) { return (n < 10 ? "0" : "") + n; }
+  function ymd(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+  function mm(t) { var a = String(t).split(":"); return +a[0] * 60 + +a[1]; }
+  function hm(m) { return pad(Math.floor(m / 60)) + ":" + pad(m % 60); }
+  function h12(t) { var m = mm(t), h = Math.floor(m / 60), ap = h >= 12 ? "PM" : "AM"; return ((h % 12) || 12) + ":" + pad(m % 60) + " " + ap; }
+  function inr(n) { return ((P && P.sym) || "₹") + (+n || 0).toLocaleString((P && P.locale) || "en-IN"); }
+  function chosen() { return (P.services || []).filter(function (s) { return S.svc[s.key]; }); }
+  function dur() { return chosen().reduce(function (a, s) { return a + (+s.duration || 30); }, 0); }
+  function tot() { return chosen().reduce(function (a, s) { return a + (+s.price || 0); }, 0); }
+  function safeUrl(u) { return /^https:\/\//i.test(u || "") ? u : ""; }
+  function niceDate(k) { var p = k.split("-"); var d = new Date(+p[0], +p[1] - 1, +p[2]); return d.toLocaleDateString((P && P.locale) || "en-IN", { weekday: "short", day: "numeric", month: "short" }); }
+
+  function free(date, t, d) {
+    var s = mm(t), e = s + d;
+    var bl = ((P.busy || {})[date] || []).map(function (b) { return { s: mm(b.s), e: b.e ? mm(b.e) : mm(b.s) + 30, staff: b.staff || 0 }; });
+    T.forEach(function (r) { if (r.date === date) bl.push({ s: mm(r.s), e: mm(r.s) + (+r.d || 30), staff: r.staff || 0 }); });
+    var ov = function (b) { return b.s < e && s < b.e; };
+    if (S.staff) return !bl.some(function (b) { return ov(b) && b.staff === S.staff; });
+    return bl.filter(ov).length < Math.max(1, (P.staff || []).length);
+  }
+  function slots() {
+    if (!S.date || !dur()) return [];
+    var d = dur(), o = mm(P.hours.open), c = mm(P.hours.close), st = +P.slot || 30, out = [], now = new Date(), lead = (+P.leadMin || 0);
+    for (var m = o; m + d <= c; m += st) {
+      var t = hm(m);
+      if (S.date === ymd(now) && m < now.getHours() * 60 + now.getMinutes() + lead) continue;
+      if (free(S.date, t, d)) out.push(t);
+    }
+    return out;
+  }
+
+  function svcList() {
+    var q = S.q.trim().toLowerCase(), h = "";
+    var list = P.services.filter(function (s) { return (!S.cat || s.category === S.cat) && (!q || String(s.name).toLowerCase().indexOf(q) >= 0); });
+    list.forEach(function (s) {
+      var on = !!S.svc[s.key];
+      h += '<div class="svc' + (on ? " on" : "") + '" data-svc="' + esc(s.key) + '"><span class="ck">' + (on ? "✓" : "") + '</span><span class="nm">' + esc(s.name) + '<span class="du">' + (+s.duration || 30) + ' min</span></span><span class="pr">' + inr(s.price) + "</span></div>";
+    });
+    if (!list.length) h += '<p class="muted">No service matches “' + esc(S.q) + "”.</p>";
+    return h;
+  }
+
+  function header() {
+    var addr = [P.address, P.city].filter(Boolean).join(", ");
+    var maps = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent([P.salonName, addr].filter(Boolean).join(" "));
+    var rv = safeUrl(P.reviewUrl);
+    var h = '<div class="hero"><div class="in"><span class="tag">Book online</span><h1>' + esc(P.salonName) + "</h1>";
+    if (addr) h += '<p class="addr">' + esc(addr) + "</p>";
+    h += '<div class="acts">';
+    if (rv) h += '<a class="act rv" href="' + esc(rv) + '" target="_blank" rel="noopener">★ Google reviews</a>';
+    if (P.whatsapp) h += '<a class="act" href="https://wa.me/91' + esc(P.whatsapp) + '" target="_blank" rel="noopener">💬 WhatsApp</a>';
+    if (P.wa || P.whatsapp) h += '<a class="act" href="tel:+' + esc(P.wa || ('91' + P.whatsapp)) + '">📞 Call</a>';
+    if (addr) h += '<a class="act" href="' + esc(maps) + '" target="_blank" rel="noopener">📍 Directions</a>';
+    return h + "</div></div></div>";
+  }
+
+  function render() {
+    if (!P) return;
+    document.title = P.salonName + " · Book online";
+    if (S.step === "done") return renderDone();
+    if (S.date && S.date < ymd(new Date())) { S.date = ""; S.time = ""; }   // page left open past midnight
+    var h = header() + '<div class="wrap">';
+    if (P.note) h += '<div class="note">' + esc(P.note) + "</div>";
+
+    // 1 · services
+    var cats = [];
+    P.services.forEach(function (s) { if (s.category && cats.indexOf(s.category) < 0) cats.push(s.category); });
+    var many = P.services.length > 10;
+    h += '<div class="card"><div class="h"><span class="n">1</span><b>Choose services</b></div>';
+    if (many) h += '<input class="search" id="q" placeholder="Search: haircut, facial, threading…" value="' + esc(S.q) + '">';
+    if (cats.length > 1) {
+      h += '<div class="tabs"><span class="tab' + (!S.cat ? " on" : "") + '" data-cat="">All</span>';
+      cats.forEach(function (c) { h += '<span class="tab' + (S.cat === c ? " on" : "") + '" data-cat="' + esc(c) + '">' + esc(c) + "</span>"; });
+      h += "</div>";
+    }
+    h += '<div id="svclist">' + svcList() + "</div></div>";
+
+    // 2 · stylist
+    if ((P.staff || []).length > 1) {
+      h += '<div class="card"><div class="h"><span class="n">2</span><b>Stylist <span class="muted">(optional)</span></b></div><div class="chips"><span class="pill' + (!S.staff ? " on" : "") + '" data-staff="0">Anyone</span>';
+      P.staff.forEach(function (x) { h += '<span class="pill' + (S.staff === x.id ? " on" : "") + '" data-staff="' + (+x.id) + '">' + esc(x.name) + "</span>"; });
+      h += "</div></div>";
+    }
+
+    // 3 · date
+    var D = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    h += '<div class="card"><div class="h"><span class="n">' + ((P.staff || []).length > 1 ? 3 : 2) + '</span><b>Date</b></div><div class="chips">';
+    for (var i = 0; i < (+P.maxDays || 14); i++) {
+      var d = new Date(); d.setDate(d.getDate() + i);
+      var k = ymd(d), off = ((P.hours && P.hours.closedDays) || []).indexOf(d.getDay()) >= 0;
+      h += '<div class="chip' + (S.date === k ? " on" : "") + (off ? " off" : "") + '" data-date="' + k + '"><small>' + (i === 0 ? "Today" : i === 1 ? "Tmrw" : D[d.getDay()]) + "</small><b>" + d.getDate() + "</b></div>";
+    }
+    h += "</div></div>";
+
+    if (S.err && !S.time) h += '<div class="err">' + esc(S.err) + "</div>";
+
+    // 4 · time
+    if (S.date) {
+      h += '<div class="card"><div class="h"><span class="n">' + ((P.staff || []).length > 1 ? 4 : 3) + '</span><b>Time</b></div>';
+      if (!dur()) h += '<p class="muted">Choose a service first.</p>';
+      else {
+        var sl = slots();
+        if (!sl.length) h += '<p class="muted">No free time on this day — please try another date.</p>';
+        [["Morning", 0, 720], ["Afternoon", 720, 1020], ["Evening", 1020, 1440]].forEach(function (g) {
+          var part = sl.filter(function (t) { return mm(t) >= g[1] && mm(t) < g[2]; });
+          if (!part.length) return;
+          h += '<div class="grp">' + g[0] + '</div><div class="slots">' + part.map(function (t) { return '<div class="slot' + (S.time === t ? " on" : "") + '" data-time="' + t + '">' + h12(t).replace(" ", "<br><small>") + "</small></div>"; }).join("") + "</div>";
+        });
+      }
+      h += "</div>";
+    }
+
+    // 5 · details
+    if (S.time) {
+      h += '<div class="card" id="details"><div class="h"><span class="n">✓</span><b>Your details</b></div>' +
+        '<input class="f" id="nm" autocomplete="name" placeholder="Your name" value="' + esc(S.name) + '">' +
+        '<input class="f" id="ph" type="tel" inputmode="numeric" autocomplete="tel" placeholder="Mobile number (WhatsApp)" value="' + esc(S.phone) + '">' +
+        '<textarea class="f" id="nt" rows="2" placeholder="Anything the salon should know? (optional)">' + esc(S.note) + "</textarea>" +
+        '<input class="hp" id="web" tabindex="-1" autocomplete="off">' +
+        (S.err ? '<div class="err">' + esc(S.err) + "</div>" : "") +
+        '<p class="muted">No payment now — pay at the salon. You get a WhatsApp confirmation.</p></div>';
+    }
+    h += '<div class="foot">Powered by SaloonBossX</div></div>';
+
+    // sticky bar
+    var label = !dur() ? "Choose a service" : !S.date ? "Pick a date" : !S.time ? "Pick a time" : S.sending ? "Sending…" : "Request booking";
+    var ready = dur() && S.date && S.time && !S.sending;
+    h += '<div class="bar"><div class="in"><div class="sum"><b>' + (dur() ? inr(tot()) : "—") + "</b><span>" +
+      (dur() ? chosen().length + " service" + (chosen().length > 1 ? "s" : "") + " · " + dur() + " min" + (S.date ? " · " + niceDate(S.date) : "") + (S.time ? " · " + h12(S.time) : "") : "Pick what you need") +
+      '</span></div><button class="btn" id="go"' + (ready ? "" : " disabled") + ">" + label + "</button></div></div>";
+
+    var y = window.scrollY, focus = document.activeElement && document.activeElement.id, caret = focus && document.activeElement.selectionStart;
+    app.innerHTML = h;
+    window.scrollTo(0, y);
+    if (focus && document.getElementById(focus)) { var el = document.getElementById(focus); el.focus(); try { el.setSelectionRange(caret, caret); } catch (e) {} }
+  }
+
+  function renderDone() {
+    var rv = safeUrl(P.reviewUrl);
+    var start = S.date.replace(/-/g, "") + "T" + S.time.replace(":", "") + "00";
+    var endM = mm(S.time) + dur(), end = S.date.replace(/-/g, "") + "T" + pad(Math.floor(endM / 60)) + pad(endM % 60) + "00";
+    var cal = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + encodeURIComponent(P.salonName + " appointment") +
+      "&dates=" + start + "/" + end + "&details=" + encodeURIComponent("Ref " + S.ref + " · " + chosen().map(function (s) { return s.name; }).join(", ") + " (waiting for the salon to confirm)") +
+      "&location=" + encodeURIComponent([P.salonName, P.address, P.city].filter(Boolean).join(", "));
+    var wa = P.whatsapp ? "https://wa.me/91" + P.whatsapp + "?text=" + encodeURIComponent("Hi, I just requested a booking (ref " + S.ref + ") for " + niceDate(S.date) + " at " + h12(S.time) + ". — " + S.name) : "";
+    app.innerHTML = header() + '<div class="wrap"><div class="card ok"><div class="tick">✓</div><h2>Request sent!</h2>' +
+      "<p><b>" + esc(niceDate(S.date)) + " · " + esc(h12(S.time)) + "</b><br>" + esc(chosen().map(function (s) { return s.name; }).join(", ")) + "<br>Ref: <b>" + esc(S.ref) + "</b></p>" +
+      '<p class="muted">' + esc(P.salonName) + " will confirm on WhatsApp shortly.</p>" +
+      (wa ? '<a class="btn wa big" href="' + esc(wa) + '" target="_blank" rel="noopener">💬 Message the salon</a>' : "") +
+      '<a class="btn ghost big" href="' + esc(cal) + '" target="_blank" rel="noopener">📅 Add to my calendar</a>' +
+      (rv ? '<a class="btn gold big" href="' + esc(rv) + '" target="_blank" rel="noopener">★ See our Google reviews</a>' : "") +
+      '</div><div class="foot">Powered by SaloonBossX</div></div>';
+    window.scrollTo(0, 0);
+  }
+
+  function fail(title, msg) {
+    app.innerHTML = '<div class="hero"><div class="in"><span class="tag">Book online</span><h1>' + esc(title) + '</h1><p class="addr">' + esc(msg) + "</p></div></div>";
+  }
+
+  function send() {
+    // Universal: India keeps the strict 10-digit check; elsewhere the server checks against the salon's country.
+    var india = !P.dial || P.dial === "91";
+    var raw = String(S.phone).trim();
+    var ph = india ? raw.replace(/\D/g, "").slice(-10) : raw;
+    if (S.name.trim().length < 2) { S.err = "Please enter your name."; render(); return; }
+    if (india ? !/^[6-9]\d{9}$/.test(ph) : raw.replace(/\D/g, "").length < 7) { S.err = india ? "Please enter a valid 10-digit mobile number." : "Please enter a valid mobile number."; render(); return; }
+    S.err = ""; S.sending = true; render();
+    var form = { services: chosen().map(function (s) { return s.key; }), date: S.date, time: S.time, staffId: S.staff, name: S.name.trim(), phone: ph, note: S.note, website: (document.getElementById("web") || {}).value || "" };
+    fetch(API, { method: "POST", body: JSON.stringify({ action: "public_book", key: KEY, form: form }) })
+      .then(function (r) { return r.json(); })
+      .then(function (r) {
+        S.sending = false;
+        if (!r || !r.ok) { S.err = (r && r.message) || "Could not send. Please try again."; S.time = r && /taken|booked|free/i.test(r.message || "") ? "" : S.time; return reload(); }
+        S.ref = r.ref; S.step = "done"; render();
+      })
+      .catch(function () { S.sending = false; S.err = "Network problem. Please try again, or WhatsApp the salon."; render(); });
+  }
+
+  function reload() {
+    return fetch(API + "?api=1&s=" + encodeURIComponent(SLUG)).then(function (r) { return r.json(); })
+      .then(function (d) { if (d && d.ok) { P = d.profile; T = d.taken || []; KEY = d.key; } render(); })
+      .catch(function () { render(); });
+  }
+
+  // One listener for everything (no inline handlers → strict CSP friendly).
+  app.addEventListener("click", function (e) {
+    var t = e.target.closest("[data-svc],[data-cat],[data-staff],[data-date],[data-time],#go");
+    if (!t) return;
+    if (t.id === "go") { if (S.time) { if (!document.getElementById("nm")) return; send(); } return; }
+    S.err = "";
+    if (t.hasAttribute("data-svc")) { var k = t.getAttribute("data-svc"); S.svc[k] = !S.svc[k]; S.time = ""; }
+    else if (t.hasAttribute("data-cat")) S.cat = t.getAttribute("data-cat");
+    else if (t.hasAttribute("data-staff")) { S.staff = +t.getAttribute("data-staff"); S.time = ""; }
+    else if (t.hasAttribute("data-date")) { S.date = t.getAttribute("data-date"); S.time = ""; }
+    else if (t.hasAttribute("data-time")) {
+      S.time = t.getAttribute("data-time"); render();
+      var d = document.getElementById("details"); if (d) d.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    render();
+  });
+  app.addEventListener("input", function (e) {
+    var id = e.target.id;
+    // Only the list changes while typing — the search box itself is never rebuilt (keeps the keyboard happy).
+    if (id === "q") { S.q = e.target.value; var l = document.getElementById("svclist"); if (l) l.innerHTML = svcList(); }
+    else if (id === "nm") S.name = e.target.value;
+    else if (id === "ph") S.phone = e.target.value;
+    else if (id === "nt") S.note = e.target.value;
+  });
+
+  // Boot
+  app.innerHTML = '<div class="hero"><div class="in"><span class="tag">Book online</span><div class="skel" style="width:60%;height:26px"></div><div class="skel" style="width:40%"></div></div></div><div class="wrap"><div class="card"><div class="skel"></div><div class="skel"></div><div class="skel" style="width:70%"></div></div></div>';
+  if (!API) return fail("Booking is being set up", "This booking website has no cloud link yet (config.js).");
+  if (!SLUG) return fail("Booking link incomplete", "Please open the full link the salon shared with you.");
+  // Google answers JSON; anything else (an HTML error page) means the cloud
+  // link in config.js is wrong or not public. One silent retry for flaky 2G/3G.
+  function load(tries) {
+    fetch(API + "?api=1&s=" + encodeURIComponent(SLUG), { cache: "no-store" })
+      .then(function (r) { return r.text(); })
+      .then(function (txt) {
+        var d; try { d = JSON.parse(txt); } catch (e) { return fail("Booking is being set up", "The salon's booking system is not reachable right now. Please WhatsApp or call the salon."); }
+        if (d && d.ok && !d.profile) return fail("Booking is being updated", "Please try again in a little while, or WhatsApp the salon.");
+        if (!d || !d.ok) return fail("Booking not available", (d && d.message) || "This salon is not taking online bookings right now.");
+        P = d.profile; T = d.taken || []; KEY = d.key;
+        if (!P.services || !P.services.length) return fail(P.salonName, "Online booking will open soon. Please WhatsApp the salon.");
+        render();
+      })
+      .catch(function () {
+        if (tries < 1) return setTimeout(function () { load(tries + 1); }, 1500);
+        fail("Can't load right now", "Check your internet and refresh this page.");
+      });
+  }
+  load(0);
+})();
+</script>
+</body>
+</html>
